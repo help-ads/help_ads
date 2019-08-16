@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1081448041463",
+    "firebase_url": "https://klogin-a8ad7.firebaseio.com",
+    "project_id": "klogin-a8ad7",
+    "storage_bucket": "klogin-a8ad7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081448041463:android:87e0227578a88db3",
+        "android_client_info": {
+          "package_name": "com.example.k_login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081448041463-8pqiaik5c0sl7d5h2grje4p49q2fpok0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.k_login",
+            "certificate_hash": "03ef92f88019cdc21e5a1ce0f7c80bc1d5d757d8"
+          }
+        },
+        {
+          "client_id": "1081448041463-ki2t5nrr7dbcvshkjq7ci0mvqkjtkupl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtj6DGmBEit6Rrr6HnS4UUVtzmTWnVcow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081448041463-ki2t5nrr7dbcvshkjq7ci0mvqkjtkupl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
