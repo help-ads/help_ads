@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/action_record"
+            android:enabled="true"
+            android:icon="@drawable/timer"
+            android:title="Record"
+    />
+    <item
+            android:id="@+id/action_walking"
+            android:enabled="true"
+            android:icon="@drawable/smallfoot"
+            android:title="Walking"
+    />
+    <item
+            android:id="@+id/what"
+            android:enabled="true"
+            android:title="Undefined"
+    />
+</menu>
