@@ -8,6 +8,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -44,6 +45,26 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 supportFragmentManager.beginTransaction().replace(R.id.main_content, walkingFragment).commit()
                 return true
             }
+
+            R.id.action_account -> {
+                val userFragment = UserFragment()
+                val uid = FirebaseAuth.getInstance().currentUser!!.uid
+                val bundle = Bundle()
+                bundle.putString("destinationUid", uid)
+                userFragment.arguments = bundle
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_content, userFragment)
+                    .commit()
+                return true
+            }
+
+
+            R.id.action_message -> {
+
+                return true
+            }
+
+
 
         }
         return false

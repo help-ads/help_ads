@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_record.*
 import java.util.*
@@ -57,6 +58,7 @@ class RecordFragment : Fragment() {
             else{ // 발자국 10개 입력시 -> 진동 울리도록
                 recordLapTime() //기록
                 endRecord()
+
             }
         }
 
@@ -131,6 +133,9 @@ class RecordFragment : Fragment() {
     private fun endRecord() {
         pause() //타이머 중지   -> isRuning = true 상태 -> 안 먹힘
         vibrator.vibrate(500)
+
+        //Toast.makeText(context, "분석 중입니다.", Toast.LENGTH_LONG).show()
+
         for(i in 1..9){
             result += arr[i]-arr[i-1]
         }
@@ -143,11 +148,12 @@ class RecordFragment : Fragment() {
         val fragmentManager = activity?.supportFragmentManager
         val fragmentTransaction = fragmentManager?.beginTransaction()
 
+
         //결과 프래그먼트 교체
         val walkingFragment = WalkingFragment()
         walkingFragment.setArguments(bundle)
         fragmentTransaction?.replace(R.id.main_content, walkingFragment)?.commit()
-
+        Toast.makeText(context, "분석 완료", Toast.LENGTH_SHORT).show()
 
     }
 

@@ -48,7 +48,7 @@
             app:layout_constraintEnd_toEndOf="@+id/password_edittext_login"
     />
     <TextView
-            android:text="이전 페이지로 돌아가기"
+            android:text="이전 페이지로"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/back_to_register_textview"

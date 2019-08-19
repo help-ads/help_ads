@@ -48,7 +48,7 @@ class WalkingFragment : Fragment() {
         super.onResume()
         val vibrator = activity?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
-        tvSec.setText("걸음 사이 간격 : ${interval/1000.toDouble()}초")
+        tvSec.setText("보폭 : ${interval/1000.toDouble()}초")
 
 
         btnWalk.setOnClickListener {
@@ -80,12 +80,12 @@ class WalkingFragment : Fragment() {
 
         btnPlus.setOnClickListener{
             interval += intervalChange
-            tvSec.setText("걸음 사이 간격 : ${interval/1000.toDouble()}초")
+            tvSec.setText("보폭 : ${interval/1000.toDouble()}초")
         }
 
         btnMinus.setOnClickListener {
             interval -= intervalChange
-            tvSec.setText("걸음 사이 간격 : ${interval/1000.toDouble()}초")
+            tvSec.setText("보폭 : ${interval/1000.toDouble()}초")
         }
     }
 }

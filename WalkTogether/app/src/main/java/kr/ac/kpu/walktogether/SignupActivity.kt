@@ -19,12 +19,16 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-        register_button_register.setOnClickListener {
+
+
+        register_button_register.setOnClickListener {  //회원가입 버튼 누르기
             performRegister()
+
+
 
         }
 
-        already_have_account_textview.setOnClickListener{
+        already_have_account_textview.setOnClickListener{  //이미 회원가입했을 때 버튼 누르는 경우
             Log.d("RegisterActivity","Try to show login activity")
 
             //launch the login activity somehow
@@ -32,14 +36,16 @@ class SignupActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        selectphoto_button_register.setOnClickListener {
-            Log.d("RegisterActivity", "Try to show photo selector")
+        selectphoto_button_register.setOnClickListener {  //사진 고르는 버튼튼
+           Log.d("RegisterActivity", "Try to show photo selector")
 
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             startActivityForResult(intent, 0)
         }
+
     }
+
     var selectedPhotoUri: Uri? = null
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -57,9 +63,12 @@ class SignupActivity : AppCompatActivity() {
 //        val bitmapDrawable = BitmapDrawable(bitmap)
 //        selectphoto_button_register.setBackgroundDrawable(bitmapDrawable)
     }
+
     private fun performRegister(){
-        val email = email_edittext_register.text.toString()
+        val name = username_edittext_register.text.toString()  //입력한 이름
+        val email = email_edittext_register.text.toString() //입력한 이메일
         val password = password_edittext_register.text.toString()
+
 
         if(email.isEmpty() || password.isEmpty()){
             Toast.makeText(this, "이메일 또는 비밀번호가 입력되지 않았습니다.", Toast.LENGTH_SHORT).show()
@@ -78,10 +87,21 @@ class SignupActivity : AppCompatActivity() {
                 Log.d("RegisterActivity", "Successfully created user with uid: ${it.result!!.user.uid}")
 
                 uploadImageToFirebaseStorage()
+
+
+                //intent.putExtra 로 Exam 클래스의 변수 myExam을 저장
+                //val accountIntent = Intent(this, UserFragment::class.java)
+                //accountIntent.putExtra("examKey", myExam)
+                //startActivity(accountIntent)
+
+
+
                 //회원가입 성공시다음페이지로
                 val intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
+
+
             }
             .addOnFailureListener{
                 Log.d("RegisterActivity","Failed to create user: ${it.message}")
@@ -123,4 +143,5 @@ class SignupActivity : AppCompatActivity() {
                 startActivity(intent)
             }
     }*/
+
 }
