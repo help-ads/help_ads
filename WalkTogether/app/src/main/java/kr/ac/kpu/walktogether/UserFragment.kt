@@ -13,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
-import kotlinx.android.synthetic.main.activity_user.view.*
+import kotlinx.android.synthetic.main.fragment_user.view.*
 
 //import kotlinx.android.synthetic
 
@@ -46,7 +46,7 @@ class UserFragment : Fragment() {
 
 
 
-        fragmentView = inflater.inflate(R.layout.activity_user, container, false)
+        fragmentView = inflater.inflate(R.layout.fragment_user, container, false)
         super.onCreate(savedInstanceState)
 
         // Firebase

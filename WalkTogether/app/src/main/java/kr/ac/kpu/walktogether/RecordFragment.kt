@@ -10,7 +10,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_record.*
+import kr.ac.kpu.walktogether.model.RecordDTO
 import java.util.*
 import kotlin.concurrent.timer
 
@@ -22,6 +26,9 @@ import kotlin.concurrent.timer
 
 class RecordFragment : Fragment() {
 
+    //firebase와 연동하여 데이터를 저장하기 위한 부분
+    var user : FirebaseUser? = null
+    var firestore: FirebaseFirestore? = null
 
     private var time = 0 //시간을 계산할 변수를 0으로 초기화
     private var timerTask: Timer? = null //Timer 타입의 timerTsk를 null을 허용하도록 선언(Timer 객체를 변수에 저장)
@@ -40,6 +47,10 @@ class RecordFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_record, container, false)
+
+        user = FirebaseAuth.getInstance().currentUser
+        firestore = FirebaseFirestore.getInstance()
+
         vibrator = activity?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         return view
     }
@@ -143,13 +154,35 @@ class RecordFragment : Fragment() {
 
         val bundle =  Bundle()
         bundle.putDouble("result", result)
-        Log.d("gkgkgk", "$result")
+
+        /* 데이터 베이스에 걸은 값을 저장 */
+
+        // 저장할 모델 생성
+        var recordDTO = RecordDTO()
+        recordDTO.uid = user?.uid
+        recordDTO.timestamp = System.currentTimeMillis()
+        recordDTO.interval = result
+
+        // 처음 저장    document
+//        firestore?.collection("WalkInterval")?.document(user?.uid!!)?.set(recordDTO)?.addOnFailureListener { Exception ->
+//            Log.d("qwqw", "qwqw ${Exception}")
+//        }
+
+//        firestore?.collection("WalkInterval")?.document(user?.uid!!)?.set(recordDTO)?.addOnCompleteListener { task ->
+//            Log.d("zxzxzx", "zxzxzx")
+//            if(task.isSuccessful){
+//                Log.d("asasas", "asasas")
+//            }
+//            else{
+//                Log.d("ewqewq", "ewqewq ${task.exception}")
+//            }
+//        }
 
         val fragmentManager = activity?.supportFragmentManager
         val fragmentTransaction = fragmentManager?.beginTransaction()
 
 
-        //결과 프래그먼트 교체
+        //걸어보기 프래그먼트 교체
         val walkingFragment = WalkingFragment()
         walkingFragment.setArguments(bundle)
         fragmentTransaction?.replace(R.id.main_content, walkingFragment)?.commit()

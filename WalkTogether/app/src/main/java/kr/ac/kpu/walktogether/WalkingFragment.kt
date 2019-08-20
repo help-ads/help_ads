@@ -27,7 +27,7 @@ class WalkingFragment : Fragment() {
     var startFlag = true
     var interval : Long = 2000
     var result : Double = 0.0
-    val intervalChange = interval/10
+    var intervalChange = interval/10
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +41,7 @@ class WalkingFragment : Fragment() {
             result = bundle.getDouble("result")
             interval = (result*1000).toLong()
         }
+        intervalChange = interval/10
         return view
     }
 

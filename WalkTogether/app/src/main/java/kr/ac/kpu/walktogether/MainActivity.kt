@@ -46,6 +46,17 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 return true
             }
 
+            R.id.action_calendar -> {
+                val calendarFragment = CalendarFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.main_content, calendarFragment).commit()
+                return true
+            }
+
+            R.id.action_message -> {
+
+                return true
+            }
+
             R.id.action_account -> {
                 val userFragment = UserFragment()
                 val uid = FirebaseAuth.getInstance().currentUser!!.uid
@@ -55,12 +66,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.main_content, userFragment)
                     .commit()
-                return true
-            }
-
-
-            R.id.action_message -> {
-
                 return true
             }
 
