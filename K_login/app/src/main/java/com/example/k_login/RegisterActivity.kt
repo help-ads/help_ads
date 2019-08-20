@@ -2,7 +2,6 @@ package com.example.k_login
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,15 +26,12 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         already_have_account_textview.setOnClickListener{
-            Log.d("RegisterActivity","Try to show login activity")
 
-            //launch the login activity somehow
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
         selectphoto_button_register.setOnClickListener {
-            Log.d("RegisterActivity", "Try to show photo selector")
 
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
@@ -48,16 +44,12 @@ class RegisterActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data !=null)
-            Log.d("RegisterActivity", "Photo was selected")
-
         selectedPhotoUri = data?.data//data.data
         val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
 
         selectphoto_imageview_register.setImageBitmap(bitmap)
 
         selectphoto_button_register.alpha = 0f
-//        val bitmapDrawable = BitmapDrawable(bitmap)
-//        selectphoto_button_register.setBackgroundDrawable(bitmapDrawable)
     }
     private fun performRegister(){
         val email = email_edittext_register.text.toString()
@@ -68,25 +60,17 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        Log.d("RegisterActivity", "Email is: " + email)
-        Log.d("RegisterActivity", "Password: $password")
-
-        //Firebase Authentication to create a user with email and password
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if(!it.isSuccessful) return@addOnCompleteListener
 
-                // else if successful
-                Log.d("RegisterActivity", "Successfully created user with uid: ${it.result!!.user.uid}")
-
                 uploadImageToFirebaseStorage()
                 //회원가입 성공시다음페이지로
-                val intent = Intent(this, NextActivity::class.java)
+                val intent = Intent(this, ChatstartActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
             .addOnFailureListener{
-                Log.d("RegisterActivity","Failed to create user: ${it.message}")
                 Toast.makeText(this, "회원가입이 실패되었습니다.: ${it.message}", Toast.LENGTH_SHORT).show()
             }
 
@@ -98,20 +82,14 @@ class RegisterActivity : AppCompatActivity() {
 
         ref.putFile(selectedPhotoUri!!)
             .addOnSuccessListener {
-                Log.d("RegisterActivity","Successfully uploaded image: ${it.metadata?.path}")
-
                 ref.downloadUrl.addOnSuccessListener {
-                    Log.d("RegisterActivity","File Location: $it")
-
-                    //saveUserToFirebaseDatabase(it.toString())
+                    saveUserToFirebaseDatabase(it.toString())
                 }
             }
-            //.addOnFailureListener {
-                //do some logging here
-            //}
+
     }
 
-    /*private fun saveUserToFirebaseDatabase(profileImageUrl: String){
+    private fun saveUserToFirebaseDatabase(profileImageUrl: String){
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
 
@@ -119,13 +97,14 @@ class RegisterActivity : AppCompatActivity() {
 
         ref.setValue(user)
             .addOnSuccessListener {
-                Log.d("RegisterActivity","Finally we saved the user to Firebase Database")
-
-                val intent = Intent(this, NextActivity::class.java)
+                val intent = Intent(this, ChatstartActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
-    }*/
+    }
 }
 
-class User(val uid: String, val username: String, val profileImageUrl: String)
+class User(val uid: String, val username: String, val profileImageUrl: String){
+    constructor() : this("","","")
+
+}
