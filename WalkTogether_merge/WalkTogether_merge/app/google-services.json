@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "894708216171",
+    "firebase_url": "https://walktogether-34530.firebaseio.com",
+    "project_id": "walktogether-34530",
+    "storage_bucket": "walktogether-34530.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894708216171:android:447a89f59b70b5ea",
+        "android_client_info": {
+          "package_name": "kr.ac.kpu.walktogether"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "894708216171-n1e75o9q5favh6ue5lh0mrrsc2d8ku3b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.ac.kpu.walktogether",
+            "certificate_hash": "67b987652efc4e52f9bd8ac2ef92c1871d7bea3d"
+          }
+        },
+        {
+          "client_id": "894708216171-uoe0tga5vqr4iu256sme5ufdv89lhv32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuePoucfkyIZzcVE32T_8mFbg4UJh9jFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "894708216171-uoe0tga5vqr4iu256sme5ufdv89lhv32.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
