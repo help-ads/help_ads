@@ -60,8 +60,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
 
             R.id.action_message -> {
-                val messageFragment = MessageFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.main_content, messageFragment).commit()
+                val chatlogFragment = ChatlogFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.main_content, chatlogFragment).commit()
                 return true
             }
 

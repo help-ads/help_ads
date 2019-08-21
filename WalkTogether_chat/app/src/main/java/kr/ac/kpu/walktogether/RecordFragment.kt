@@ -148,7 +148,6 @@ class RecordFragment : Fragment() {
         pause() //타이머 중지   -> isRuning = true 상태 -> 안 먹힘
         vibrator.vibrate(500)
 
-        //Toast.makeText(context, "분석 중입니다.", Toast.LENGTH_LONG).show()
 
         for(i in 1..9){
             result += arr[i]-arr[i-1]
@@ -183,6 +182,8 @@ class RecordFragment : Fragment() {
 
         val fragmentManager = activity?.supportFragmentManager
         val fragmentTransaction = fragmentManager?.beginTransaction()
+
+        //Toast.makeText(context, "분석 중입니다.", Toast.LENGTH_LONG).show()
 
 
         //걸어보기 프래그먼트 교체

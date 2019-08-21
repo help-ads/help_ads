@@ -122,7 +122,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="10dp"
-            android:text="주치의 정보"
+            android:text="재활치료사 정보"
             android:textStyle="bold" ></TextView>
     <RelativeLayout
             android:layout_width="match_parent"
